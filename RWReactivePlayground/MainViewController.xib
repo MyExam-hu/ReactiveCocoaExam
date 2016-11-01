@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController">
+            <connections>
+                <outlet property="loginButton" destination="XQT-cO-E5W" id="ja6-xA-N5j"/>
+                <outlet property="nameLabel" destination="gM7-vJ-SVy" id="f9c-Ng-JC9"/>
+                <outlet property="nameText" destination="V2J-mN-Aod" id="zCQ-fb-4AB"/>
+                <outlet property="passWordText" destination="ykr-tS-czh" id="mPN-wZ-TyM"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQT-cO-E5W">
+                    <state key="normal" title="Button"/>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V2J-mN-Aod">
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="muk-CJ-vYU"/>
+                    </constraints>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ykr-tS-czh">
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gM7-vJ-SVy">
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ykr-tS-czh" firstAttribute="width" secondItem="V2J-mN-Aod" secondAttribute="width" id="0qR-jS-kXd"/>
+                <constraint firstItem="V2J-mN-Aod" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="3Of-LV-OCc"/>
+                <constraint firstItem="V2J-mN-Aod" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="6dl-vu-zbj"/>
+                <constraint firstItem="XQT-cO-E5W" firstAttribute="centerX" secondItem="ykr-tS-czh" secondAttribute="centerX" id="BW3-LY-2s6"/>
+                <constraint firstItem="XQT-cO-E5W" firstAttribute="top" secondItem="ykr-tS-czh" secondAttribute="bottom" constant="30" id="Cjz-kI-r62"/>
+                <constraint firstItem="ykr-tS-czh" firstAttribute="leading" secondItem="V2J-mN-Aod" secondAttribute="leading" id="Ir4-ep-peo"/>
+                <constraint firstItem="ykr-tS-czh" firstAttribute="top" secondItem="V2J-mN-Aod" secondAttribute="bottom" constant="30" id="Rd7-Fl-pGn"/>
+                <constraint firstItem="gM7-vJ-SVy" firstAttribute="leading" secondItem="XQT-cO-E5W" secondAttribute="trailing" constant="20" id="cBM-HI-Yd9"/>
+                <constraint firstItem="gM7-vJ-SVy" firstAttribute="centerY" secondItem="XQT-cO-E5W" secondAttribute="centerY" id="r6E-ih-Jmf"/>
+            </constraints>
+            <point key="canvasLocation" x="-124" y="84"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
+</document>

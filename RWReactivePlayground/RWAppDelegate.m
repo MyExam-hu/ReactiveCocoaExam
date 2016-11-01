@@ -7,6 +7,7 @@
 //
 
 #import "RWAppDelegate.h"
+#import "MainViewController.h"
 
 @implementation RWAppDelegate
 
@@ -21,6 +22,14 @@
   // make the status bar white
   [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
   
+    self.window=[[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    MainViewController *vc =[[MainViewController alloc] initWithNibName:@"MainViewController" bundle:nil];
+    
+    UINavigationController * nav=[[UINavigationController alloc] initWithRootViewController:vc];
+    nav.navigationBarHidden=YES;
+    self.rootViewController=vc;
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
   
   return YES;
 }
