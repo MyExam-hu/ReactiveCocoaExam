@@ -91,6 +91,10 @@
          NSLog(@"notificationDemo : %@", x);
      }
      ];
+    
+//    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"MyNotification" object:nil] subscribeNext:^(NSNotification *notification) {
+//        NSLog(@"Notification Received");
+//    }];
 }
 
 #pragma -mark 代理方法
