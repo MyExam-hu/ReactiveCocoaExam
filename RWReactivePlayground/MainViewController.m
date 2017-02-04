@@ -44,7 +44,7 @@
     [self delegateDemo];
     [self notificationDemo];
     [self createSignalDemo];
-    
+    [self test];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -203,14 +203,30 @@
     NSLog(@"如果我出现了，说明没有循环引用，否则请检查 @weakify(self) @strongify(self) 组合 %s",__FUNCTION__);
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)test
+{
+    RACSignal *signalA = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        double delayInSeconds = 5.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [subscriber sendNext:@"A"];
+        });
+        return nil;
+    }];
+    
+    RACSignal *signalB = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+//        [subscriber sendNext:@"B"];
+        [subscriber sendNext:@"Another B"];
+        [subscriber sendCompleted];
+        return nil;
+    }];
+    //当signalA和signalB都至少sendNext过一次，接下来只要其中任意一个signal有了新的内容
+    [self rac_liftSelector:@selector(doA:withB:) withSignals:signalA, signalB, nil];
 }
-*/
+
+- (void)doA:(NSString *)A withB:(NSString *)B
+{
+    NSLog(@"A:%@ and B:%@", A, B);
+}
 
 @end
