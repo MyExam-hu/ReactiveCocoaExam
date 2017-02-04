@@ -43,6 +43,8 @@
     [self buttonDemo];
     [self delegateDemo];
     [self notificationDemo];
+    [self createSignalDemo];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,6 +54,19 @@
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     self.person.name = [NSString stringWithFormat:@"zhang %d",arc4random_uniform(100)];
+}
+
+-(void)createSignalDemo{
+    RACSignal *signal = [RACSignal createSignal:^ RACDisposable * (id<RACSubscriber> subscriber) {
+        NSLog(@"triggered");
+        [subscriber sendNext:@"foobar"];
+        [subscriber sendCompleted];
+        return nil;
+    }];
+    
+    [signal subscribeNext:^(id x) {
+        NSLog(@"%@",x);
+    }];
 }
 
 #pragma -mark 通知
