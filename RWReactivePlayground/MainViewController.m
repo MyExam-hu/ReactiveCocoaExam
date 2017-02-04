@@ -67,6 +67,16 @@
     [signal subscribeNext:^(id x) {
         NSLog(@"%@",x);
     }];
+    
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Alert" delegate:nil cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+//    [[alertView rac_buttonClickedSignal] subscribeNext:^(NSNumber *indexNumber) {
+//        if ([indexNumber intValue] == 1) {
+//            NSLog(@"you touched NO");
+//        } else {
+//            NSLog(@"you touched YES");
+//        }
+//    }]; 
+//    [alertView show];
 }
 
 #pragma -mark 通知
