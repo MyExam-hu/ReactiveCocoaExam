@@ -79,21 +79,30 @@
 //    [alertView show];
     
     //跳过前2次
-    RACSignal *signal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        
-        [subscriber sendNext:@"Ricky1"];
-        [subscriber sendNext:@"Ricky2"];
-        [subscriber sendNext:@"Ricky3"];
-        [subscriber sendNext:@"Ricky4"];
-        [subscriber sendCompleted];
-        
-        return nil;
-        
-    }] skip:2];
+//    RACSignal *signal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+//        
+//        [subscriber sendNext:@"Ricky1"];
+//        [subscriber sendNext:@"Ricky2"];
+//        [subscriber sendNext:@"Ricky3"];
+//        [subscriber sendNext:@"Ricky4"];
+//        [subscriber sendCompleted];
+//        
+//        return nil;
+//        
+//    }] skip:2];
+//    
+//    [signal subscribeNext:^(id x) {
+//        
+//        NSLog(@"%@",x);
+//    }];
     
-    [signal subscribeNext:^(id x) {
-        
-        NSLog(@"%@",x);
+    //RAC快速实现秒表
+    UILabel *lab =[[UILabel alloc]initWithFrame:CGRectMake(50, 400, 250, 50)];
+    lab.backgroundColor =[UIColor cyanColor];
+    [self.view addSubview:lab];
+    
+    RAC(lab,text) = [[RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]] map:^id(NSData * value) {
+        return value.description;
     }];
 }
 
