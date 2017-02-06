@@ -111,8 +111,6 @@
  * 验证此函数：点击textFile时，系统键盘会发送通知，打印出通知的内容
  */
 - (void)notificationDemo {
-    
-    
     [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIKeyboardWillChangeFrameNotification object:nil]
      subscribeNext:^(id x) {
          NSLog(@"notificationDemo : %@", x);
