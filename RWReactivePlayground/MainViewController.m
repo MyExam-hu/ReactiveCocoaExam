@@ -108,6 +108,24 @@
         NSDate *localeDate = [value  dateByAddingTimeInterval: interval];
         return localeDate.description;
     }];
+    
+    // 创建信号中的信号
+    RACSubject *signalOfsignals = [RACSubject subject];
+    RACSubject *signal = [RACSubject subject];
+    [[signalOfsignals flattenMap:^RACStream *(id value) {
+        // 当signalOfsignals的signals发出信号才会调用
+        return value;
+    }] subscribeNext:^(id x) {
+        // 只有signalOfsignals的signal发出信号才会调用，因为内部订阅了bindBlock中返回的信号，也就是flattenMap返回的信号。
+        // 也就是flattenMap返回的信号发出内容，才会调用。
+        NSLog(@"%@aaa",x);
+    }];
+    
+    // 信号的信号发送信号
+    [signalOfsignals sendNext:signal];
+    
+    // 信号发送内容
+    [signal sendNext:@1];
 }
 
 #pragma -mark 通知
