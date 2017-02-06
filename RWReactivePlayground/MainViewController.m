@@ -101,8 +101,12 @@
     lab.backgroundColor =[UIColor cyanColor];
     [self.view addSubview:lab];
     
-    RAC(lab,text) = [[RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]] map:^id(NSData * value) {
-        return value.description;
+    RAC(lab,text) = [[RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]] map:^id(NSDate * value) {
+        //NSDate多八個小時解決辦法
+        NSTimeZone *zone = [NSTimeZone systemTimeZone];
+        NSInteger interval = [zone secondsFromGMTForDate: value];
+        NSDate *localeDate = [value  dateByAddingTimeInterval: interval];
+        return localeDate.description;
     }];
 }
 
