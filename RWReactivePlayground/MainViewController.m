@@ -44,7 +44,7 @@
     [self delegateDemo];
     [self notificationDemo];
     [self createSignalDemo];
-    [self test];
+    [self testLift];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,16 +57,16 @@
 }
 
 -(void)createSignalDemo{
-    RACSignal *signal = [RACSignal createSignal:^ RACDisposable * (id<RACSubscriber> subscriber) {
-        NSLog(@"triggered");
-        [subscriber sendNext:@"foobar"];
-        [subscriber sendCompleted];
-        return nil;
-    }];
-    
-    [signal subscribeNext:^(id x) {
-        NSLog(@"%@",x);
-    }];
+//    RACSignal *signal = [RACSignal createSignal:^ RACDisposable * (id<RACSubscriber> subscriber) {
+//        NSLog(@"triggered");
+//        [subscriber sendNext:@"foobar"];
+//        [subscriber sendCompleted];
+//        return nil;
+//    }];
+//    
+//    [signal subscribeNext:^(id x) {
+//        NSLog(@"%@",x);
+//    }];
     
 //    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"Alert" delegate:nil cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
 //    [[alertView rac_buttonClickedSignal] subscribeNext:^(NSNumber *indexNumber) {
@@ -77,6 +77,24 @@
 //        }
 //    }]; 
 //    [alertView show];
+    
+    //跳过前2次
+    RACSignal *signal = [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        [subscriber sendNext:@"Ricky1"];
+        [subscriber sendNext:@"Ricky2"];
+        [subscriber sendNext:@"Ricky3"];
+        [subscriber sendNext:@"Ricky4"];
+        [subscriber sendCompleted];
+        
+        return nil;
+        
+    }] skip:2];
+    
+    [signal subscribeNext:^(id x) {
+        
+        NSLog(@"%@",x);
+    }];
 }
 
 #pragma -mark 通知
@@ -203,7 +221,7 @@
     NSLog(@"如果我出现了，说明没有循环引用，否则请检查 @weakify(self) @strongify(self) 组合 %s",__FUNCTION__);
 }
 
-- (void)test
+- (void)testLift
 {
     RACSignal *signalA = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         double delayInSeconds = 5.0;
